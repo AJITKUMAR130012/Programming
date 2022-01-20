@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/subsets/
+
+class Solution {
+public:
+    vector<vector<int>> v;
+    void fun(list<int> inp,vector<int> out)
+    {
+        if(inp.size()==0) 
+        {
+            v.push_back(out);
+            return;
+        }
+        vector<int> op1=out,op2=out;
+        int x=inp.front();
+        inp.pop_front();
+        op1.push_back(x);
+        fun(inp,op1);
+        fun(inp,op2);
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        
+        vector<int> out;
+        list<int> l;
+        for(int i=0;i<nums.size();i++)
+        {
+            l.push_back(nums[i]);
+        }
+        
+        fun(l,out);
+        return v; 
+        
+    }
+};
