@@ -1,0 +1,37 @@
+//   https://leetcode.com/problems/combination-sum/
+
+class Solution {
+public:
+    vector<vector<int>> ans;
+    void sub(vector<int> v,int t,int s,vector<int> out)
+    {
+       if(s>t) return;
+        if(v.size()==0)
+        {
+            if(s==t) 
+            {
+                ans.push_back(out);
+                return;
+            }
+            return;
+        }
+        int op1=s,op2=s;
+        op1+=v[0];
+        vector<int> o1,o2;
+        o1=out;
+        o2=out;
+        o1.push_back(v[0]);
+        sub(v,t,op1,o1);
+        v.erase(v.begin());
+        sub(v,t,op2,o2);
+    }
+    
+    
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        int sum=0;
+        vector<int> out;
+        sub(candidates,target,sum,out);
+        return ans;
+    }
+};
