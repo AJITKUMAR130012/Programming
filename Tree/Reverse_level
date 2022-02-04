@@ -1,0 +1,27 @@
+
+//https://practice.geeksforgeeks.org/problems/reverse-level-order-traversal/1#
+
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    vector<int> ans;
+    if(!root) return ans;
+    queue<Node*> q;
+    stack<Node*> s;
+    q.push(root);
+    while(q.size()!=0)
+    {
+        Node *temp=q.front();
+        s.push(temp);
+        q.pop();
+        
+        if(temp->right) q.push(temp->right);
+        if(temp->left) q.push(temp->left);
+    }
+    while(s.size()!=0)
+    {
+        ans.push_back(s.top()->data);
+        s.pop();
+    }
+    return ans;
+}
