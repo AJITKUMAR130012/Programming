@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+
+
+int maxLevelSum(TreeNode* root) {
+        int level=1;
+        queue<TreeNode*> q;
+        q.push(root);
+        int val=INT_MIN,ans;
+        while(q.size()!=0)
+        {
+            int sum=0,n=q.size();
+            for(int i=0;i<n;i++)
+            {
+                TreeNode* temp=q.front();
+                sum+=(temp->val);
+                q.pop();
+                if(temp->left) q.push(temp->left);
+                if(temp->right) q.push(temp->right);
+            }
+            if(sum>val) 
+            {
+                val=sum;
+                ans=level;
+            }
+            level++;
+        }
+        return ans;
+        
+    }
