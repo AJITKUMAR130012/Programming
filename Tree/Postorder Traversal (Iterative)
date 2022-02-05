@@ -1,0 +1,24 @@
+//https://practice.geeksforgeeks.org/problems/postorder-traversal-iterative/0/?fbclid=IwAR0SLfpVJj7vraoEhF622rPmh-uIwrG5SBSm-UD4ckAk5Luz7tvQlXzjFYg#
+
+
+  vector<int> postOrder(Node* node) {
+        // code here
+        Node *tree=node;
+        stack<Node*> s1,s2;
+        s1.push(tree);
+        while(s1.size()!=0)
+        {
+            s2.push(s1.top());
+            Node *temp=s1.top();
+            s1.pop();
+            if(temp->left) s1.push(temp->left);
+            if(temp->right) s1.push(temp->right);
+        }
+        vector<int> ans;
+        while(s2.size()!=0)
+        {
+            ans.push_back(s2.top()->data);
+            s2.pop();
+        }
+        return ans;
+    }
