@@ -1,0 +1,27 @@
+//  https://practice.geeksforgeeks.org/problems/inorder-traversal-iterative/0/?fbclid=IwAR2_lL0T84DnciLyzMTQuVTMBOi82nTWNLuXjUgahnrtBgkphKiYk6xcyJU
+
+
+ vector<int> inOrder(Node* root)
+    {
+        //code here
+        Node *tree=root;
+        vector<int> ans;
+        stack<Node*> s;
+        while(true)
+        {
+            if(tree)
+            {
+                s.push(tree);
+                tree=tree->left;
+            }
+            else
+            {
+                if(s.size()==0) break;
+                tree=s.top();
+                s.pop();
+                ans.push_back(tree->data);
+                tree=tree->right;
+            }
+        }
+        return ans;
+    }
