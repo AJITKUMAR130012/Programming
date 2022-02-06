@@ -1,0 +1,12 @@
+// https://practice.geeksforgeeks.org/problems/minimum-depth-of-a-binary-tree/1#
+
+int minDepth(Node *root) {
+        // Your code here
+        if(!root) return 0;
+        if(!root->left and !root->right) return 1;
+        int l=minDepth(root->left);
+        int r=minDepth(root->right);
+        if(root->left and root->right) return 1+min(l,r);
+        if(root->left) return 1+l;
+        if(root->right) return 1+r;
+    }
