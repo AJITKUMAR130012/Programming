@@ -1,0 +1,21 @@
+// https://practice.geeksforgeeks.org/problems/check-for-balanced-tree/1#:~:text=A%20tree%20is%20height%20balanced,for%20all%20nodes%20of%20tree.&text=Example%202%3A,Hence%20balanced.
+
+int height(Node *root)
+    {
+        if(!root) return 0;
+        int l=height(root->left);
+        int r=height(root->right);
+        return max(l,r)+1;
+    }
+    bool isBalanced(Node *root)
+    {
+        //  Your Code here
+        if(!root) return true;
+        if(!root->left and !root->right) return true;
+        if(!isBalanced(root->left)) return false;
+        if(!isBalanced(root->right)) return false;
+        int l=height(root->left);
+        int r=height(root->right);
+        if(abs(l-r)>1) return false;
+        return true;
+    }
