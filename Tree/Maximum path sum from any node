@@ -1,0 +1,23 @@
+//https://practice.geeksforgeeks.org/problems/maximum-path-sum-from-any-node/1#
+
+
+int mai=INT_MIN;
+    int find(Node *root)
+    {
+       if(!root) return 0;
+        int l=find(root->left);
+        int r=find(root->right);
+        if(l<0 ) l=0;
+        if(r<0) r=0;
+         mai=max(mai,l+r+root->data);
+        
+        return root->data+max(l,r);
+    }
+    
+    int findMaxSum(Node* root)
+    {
+        mai=INT_MIN;
+        // Your code goes here
+        int x=find(root);
+        return mai;
+    }
