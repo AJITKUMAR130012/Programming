@@ -1,0 +1,20 @@
+// https://practice.geeksforgeeks.org/problems/diameter-of-binary-tree/0/?problemType=functional&difficulty[]=0&page=1&sortBy=submissions&query=problemTypefunctionaldifficulty[]0page1sortBysubmissions#
+
+
+int mai=0;
+
+int fun(struct Node *root)
+{
+     if(!root) return 0;
+    int l=fun(root->left);
+    int r=fun(root->right);
+    mai=max(mai,1+l+r);
+    return 1+max(l,r);
+}
+int diameter(struct Node* root) {
+    // code here
+    mai=0;
+    if(!root) return 0;
+    int h=fun(root);
+    return mai;
+}
