@@ -1,0 +1,24 @@
+// https://practice.geeksforgeeks.org/problems/root-to-leaf-path-sum/1
+
+bool fun(Node *root,int S,int x)
+    {
+        if(!root->left and !root->right)
+        {
+            x+=root->data;
+            if(x==S) return true;
+        }
+        x+=root->data;
+        if(root->left and fun(root->left,S,x)) return true;
+        if(root->right and fun(root->right,S,x)) return true;
+        return false;
+    }
+    
+    
+    
+    
+    
+    bool hasPathSum(Node *root, int S) {
+    // Your code here
+    if(fun(root,S,0))return true;
+    return false;
+}
