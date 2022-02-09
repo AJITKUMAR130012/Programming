@@ -1,0 +1,33 @@
+// https://practice.geeksforgeeks.org/problems/root-to-leaf-paths/1#
+
+
+ vector<vector<int>> ans;
+ 
+ void fun(Node *root,vector<int> v)
+ {
+     if(!root) return;
+     if(!root->left and !root->right)
+     {
+         v.push_back(root->data);
+         ans.push_back(v);
+         return;
+     }
+     v.push_back(root->data);
+     
+     fun(root->left,v);
+    
+     fun(root->right,v);
+     
+ }
+ 
+ 
+ 
+ 
+vector<vector<int>> Paths(Node* root)
+{
+    // Code here
+    ans.clear();
+    vector<int> v;
+    fun(root,v);
+    return ans;
+}
