@@ -1,0 +1,32 @@
+//https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-binary-tree/1#
+
+ bool find(Node *root,int n,vector<Node*> &v)
+    {
+        if(!root) return false;
+        v.push_back(root);
+        if(find(root->left,n,v)) return true;
+        if(find(root->right,n,v)) return true;
+        if(root->data==n) return true;
+        else
+        {
+            v.pop_back();
+            return false;
+        }
+    }
+    
+    
+    Node* lca(Node* root ,int n1 ,int n2 )
+    {
+       //Your code here 
+       vector<Node*> v1,v2;
+       bool l=find(root,n1,v1);
+       bool m=find(root,n2,v2);
+       if(!l or !m) return NULL;
+       int i;
+       for( i=0;i<min(v1.size(),v2.size());i++)
+       {
+           if(v1[i]->data!=v2[i]->data) break;
+       }
+       return v1[i-1];
+       
+    }
