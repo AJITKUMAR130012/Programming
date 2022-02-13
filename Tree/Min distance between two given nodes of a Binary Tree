@@ -1,0 +1,32 @@
+//https://practice.geeksforgeeks.org/problems/min-distance-between-two-given-nodes-of-a-binary-tree/1#
+
+ bool find(Node* root,vector<int>&v,int n)
+    {
+        if(!root) return false;
+        v.push_back(root->data);
+        if(root->data==n) return true;
+        if(find(root->left,v,n)) return true;
+        if(find(root->right,v,n)) return true;
+        
+            v.pop_back();
+            return false;
+    }
+    
+    
+    
+    
+    int findDist(Node* root, int a, int b) {
+        // Your code here
+        vector<int> v1,v2;
+        bool l=find(root,v1,a);
+        bool m=find(root,v2,b);
+        if(!l or !m) return INT_MAX;
+        int ans=v1.size()+v2.size();
+        for(int i=0;i<min(v1.size(),v2.size());i++)
+        {
+            if(v1[i]!=v2[i]) break;
+            ans=ans-2;
+        }
+        return ans;
+        
+    }
