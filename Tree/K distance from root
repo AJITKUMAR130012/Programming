@@ -1,0 +1,19 @@
+// https://practice.geeksforgeeks.org/problems/k-distance-from-root/1
+
+vector<int> ans;
+void fun(Node *root,int k,int lev)
+{
+    if(!root) return;
+    if(k==lev) ans.push_back(root->data);
+    lev++;
+    fun(root->left,k,lev);
+    fun(root->right,k,lev);
+}
+
+vector<int> Kdistance(struct Node *root, int k)
+{
+  // Your code here
+  ans.clear();
+  fun(root,k,0);
+  return ans;
+}
