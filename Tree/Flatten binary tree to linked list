@@ -1,0 +1,23 @@
+//https://practice.geeksforgeeks.org/problems/flatten-binary-tree-to-linked-list/0/
+
+void flatten(Node *root)
+    {
+        //code here
+        if(!root) return;
+        Node *curr=root;
+        if(curr->left)
+        {
+            //make flatten in left subtree
+            flatten(curr->left);
+            //store the right poiter int temporory variable
+            Node *temp=curr->right;
+            //strore the left pointer to the right pointer
+            curr->right=curr->left;
+            
+            curr->left=NULL;
+            Node *prev=curr;
+            while(prev->right) prev=prev->right;
+            prev->right=temp;
+        }
+        flatten(curr->right);
+    }
