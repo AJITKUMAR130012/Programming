@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/binary-tree-paths/
+
+vector<string> ans;
+    void fun(TreeNode *tree, string s)
+    {
+        if(!tree->left and !tree->right)
+        {
+            s+=to_string(tree->val);
+            ans.push_back(s);
+            return;
+        }
+        s+=to_string(tree->val);
+        s+="->";
+        if(tree->left)
+        fun(tree->left,s);
+        if(tree->right)
+        fun(tree->right,s);
+}
+    
+    
+    vector<string> binaryTreePaths(TreeNode* root) {
+        if(!root) return ans;
+        string s="";
+        fun(root,s);
+        return ans;
+        
+    }
