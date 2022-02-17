@@ -1,0 +1,22 @@
+//https://practice.geeksforgeeks.org/problems/flatten-binary-tree-to-linked-list/0/
+
+class Solution
+{
+    public:
+    void flatten(Node *root)
+    {
+        //code here
+        if(!root) return;
+        if(root->left)
+        {
+            flatten(root->left);
+            Node *temp=root->right;
+            root->right=root->left;
+            root->left=NULL;
+            Node *pemp=root;
+            while(pemp->right) pemp=pemp->right;
+            pemp->right=temp;
+        }
+        flatten(root->right);
+    }
+};
