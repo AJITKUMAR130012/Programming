@@ -1,0 +1,47 @@
+//https://practice.geeksforgeeks.org/problems/construct-tree-1/1
+
+ Node* Tree(int in[], int pre[], int inStrt, int inEnd,unordered_map<int,int> &m,int &preIndex)
+{
+    
+    if (inStrt > inEnd)
+        return NULL;
+ 
+    /* Pick current node from Preorder
+    traversal using preIndex
+    and increment preIndex */
+    Node* tNode = new Node(pre[preIndex++]);
+ 
+    /* If this node has no children then return */
+    if (inStrt == inEnd)
+        return tNode;
+ 
+    /* Else find the index of this node in Inorder traversal */
+    int inIndex = search(in, inStrt, inEnd, tNode->data);
+ 
+    /* Using index in Inorder traversal, construct left and
+    right subtress */
+    tNode->left = Tree(in, pre, inStrt, inIndex - 1,m,preIndex);
+    tNode->right = Tree(in, pre, inIndex + 1, inEnd,m,preIndex);
+ 
+    return tNode;
+}
+ 
+/* UTILITY FUNCTIONS */
+/* Function to find index of value in arr[start...end]
+The function assumes that value is present in in[] */
+
+    
+    
+    
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        // Code here
+    //     map<int,int> m;
+    //    for(int i=0;i<n;i++) m[in[i]]=i;
+   int preIndex = 0;
+    
+    unordered_map<int,int> m;
+        Node *root=NULL;
+        root=Tree(in,pre,0,n-1,m,preIndex);
+        return root;
+    }
