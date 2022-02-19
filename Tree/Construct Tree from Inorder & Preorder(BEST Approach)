@@ -1,0 +1,25 @@
+// https://practice.geeksforgeeks.org/problems/construct-tree-1/1#
+
+
+Node *create(int in[],int pre[],int ps,int pe,int is,int ie,unordered_map<int,int> &m)
+    {
+        if(ps>ps || is>ie) return NULL;
+        int curr=pre[ps];
+        Node *temp=new Node(curr);
+        int pos=m[curr];
+        int size=pos-is;
+        if(is==ie || ps==pe) return temp;
+        temp->left=create(in,pre,ps+1,ps+size,is,pos-1,m);
+        temp->right=create(in,pre,ps+size+1,pe,pos+1,ie,m);
+        
+    }
+    
+    
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        // Code here
+        unordered_map<int,int> m;
+        for(int i=0;i<n;i++) m[in[i]]=i;
+        Node *root=create(in,pre,0,n-1,0,n-1,m);
+        return root;
+    }
