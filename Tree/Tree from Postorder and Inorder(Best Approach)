@@ -1,0 +1,23 @@
+// https://practice.geeksforgeeks.org/problems/tree-from-postorder-and-inorder/1#
+
+Node *create(int in[],int pre[],int ps,int pe,int is,int ie,unordered_map<int,int> &m)
+    {
+        if(ps>ps || is>ie) return NULL;
+        int curr=pre[pe];
+        Node *temp=new Node(curr);
+        int pos=m[curr];
+        int size=pos-is;
+        if(is==ie || ps==pe) return temp;
+        temp->left=create(in,pre,ps,ps+size-1,is,pos-1,m);
+        temp->right=create(in,pre,ps+size,pe-1,pos+1,ie,m);
+        
+    }
+    
+Node *buildTree(int in[], int post[], int n) {
+    // Your code here
+       unordered_map<int,int> m;
+        for(int i=0;i<n;i++) m[in[i]]=i;
+    //    reverse(pre,pre+n);
+        Node *root=create(in,post,0,n-1,0,n-1,m);
+        return root;
+}
