@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/submissions/
+
+ TreeNode *create(vector<int> &pre,vector<int> &in,int ps,int pe,int is,int ie,unordered_map<int,int> &m)
+    {
+        if(ps>pe || ie<is) return NULL;
+        int curr=pre[ps];
+        TreeNode *temp=new TreeNode(curr);
+        int pos=m[curr];
+        int size=pos-is;
+        if(is==ie or ps==pe) return temp;
+        temp->left=create(pre,in,ps+1,ps+size,is,pos-1,m);
+        temp->right=create(pre,in,ps+size+1,pe,pos+1,ie,m);
+        return temp;
+    }
+    
+    
+    
+    TreeNode* bstFromPreorder(vector<int>& pre) {
+        vector<int> in;
+        in=pre;
+        int n=pre.size();
+        unordered_map<int,int> m;
+        sort(in.begin(),in.end());
+     //   for(auto c: in) cout<<c<<" ";
+        for(int i=0;i<n;i++) m[in[i]]=i;
+        TreeNode *root=create(pre,in,0,n-1,0,n-1,m);
+        return root;
+    }
