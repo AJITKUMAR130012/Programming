@@ -1,0 +1,32 @@
+//https://practice.geeksforgeeks.org/problems/construct-bst-from-post-order/1/#
+
+Node *create(int post[],int in[],int ps,int pe,int is,int ie,unordered_map<int,int> &m)
+{
+    if(is>ie || ps> pe) return NULL;
+    int curr=post[pe];
+    Node *root=new Node(curr);
+    if(is==ie || ps==pe) return root;
+    int pos=m[curr];
+    int size=pos-is;
+    root->left=create(post,in,ps,ps+size-1,is,pos-1,m);
+    root->right=create(post,in,ps+size,pe-1,pos+1,ie,m);
+}
+
+
+Node *constructTree (int post[], int size)
+{
+//code here
+ int in[101];
+ for(int i=0;i<size;i++)
+ {
+     in[i]=post[i];
+ }
+ sort(in,in+size);
+ unordered_map<int,int> m;
+ for(int i=0;i<size;i++)
+ {
+    m[in[i]]=i;
+ }
+ Node *root=create(post,in,0,size-1,0,size-1,m);
+ return root;
+}
