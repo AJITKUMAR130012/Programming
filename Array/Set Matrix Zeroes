@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/set-matrix-zeroes/
+
+ void setZeroes(vector<vector<int>>& ma) {
+        int n=ma.size();
+        int m=ma[0].size();
+        vector<pair<int,int>> v;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(ma[i][j]==0) v.push_back({i,j});
+            }
+        }
+        for(int i=0;i<v.size();i++)
+        {
+            int a=v[i].first;
+            int b=v[i].second;
+            for(int j=0;j<m;j++)
+            {
+                ma[a][j]=0;
+            }
+            for(int j=0;j<n;j++)
+            {
+                ma[j][b]=0;
+            }
+        }
+    }
