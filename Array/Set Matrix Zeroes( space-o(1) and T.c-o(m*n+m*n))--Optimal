@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/set-matrix-zeroes/
+
+ void setZeroes(vector<vector<int>>& ma) {
+        int n=ma.size();
+        int m=ma[0].size();
+       bool row=false,column=false;
+       for(int i=0;i<m;i++)
+       {
+           if(ma[0][i]==0) row=true;
+       }
+        for(int i=0;i<n;i++)
+        {
+            if(ma[i][0]==0) column=true;
+        }
+        for(int i=1;i<n;i++)
+        {
+            for(int j=1;j<m;j++)
+            {
+                if(ma[i][j]==0)
+                {
+                   ma[0][j]=ma[i][0]=0;
+                }
+            }
+        }
+        for(int i=1;i<n;i++)
+        {
+            for(int j=1;j<m;j++)
+            {
+                if(ma[0][j]==0 or ma[i][0]==0) ma[i][j]=0;
+            }
+        }
+        if(row)
+        {
+            for(int i=0;i<m;i++) ma[0][i]=0;
+        }
+        if(column)
+        {
+            for(int i=0;i<n;i++) ma[i][0]=0;
+        }
+    }
