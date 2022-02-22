@@ -1,0 +1,40 @@
+//https://leetcode.com/problems/merge-sorted-array/
+
+ void merge(vector<int>& a, int m, vector<int>& b, int n) {
+        
+        int left=0,right=0;
+        if(n==0) return;
+        int t=m+n-1;
+        while(t>=m)
+        {
+            a[t]=INT_MAX;
+            t--;
+        }
+         while(left<m+n)
+         {
+           //  if(a[left]!=0)
+          //   {
+                 if(a[left]<=b[right])
+                 {
+                     left++;
+                     
+                 }
+                 else
+                 {
+                     int i=m+n-1;
+                     while(i>left)
+                     {
+                         a[i]=a[i-1];
+                         i--;
+                     }
+                         a[left]=b[right];
+                         left++;
+                         right++;
+                     if(right>=n) return;
+                     
+                 }
+      
+         }
+       
+        
+    }
