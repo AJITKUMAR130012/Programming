@@ -1,0 +1,11 @@
+//https://leetcode.com/problems/find-the-duplicate-number/
+
+ int findDuplicate(vector<int>& nums) {
+       int index=nums[0];
+        while(-nums[index]<0)
+        {
+            nums[index]=-nums[index];
+            index=abs(nums[index]);
+        }
+        return index;
+    }
