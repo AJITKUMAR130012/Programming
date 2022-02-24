@@ -1,0 +1,8 @@
+//https://leetcode.com/problems/student-attendance-record-i/
+
+   bool checkRecord(string s) {
+        if(s.find("LLL")!=string::npos) return false;
+        if(count(s.begin(),s.end(),'A')>=2) return false;
+        return true;
+    }
+
