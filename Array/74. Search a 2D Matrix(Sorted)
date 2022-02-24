@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/search-a-2d-matrix/
+
+ bool searchMatrix(vector<vector<int>>& ma, int t) {
+     int m=ma.size();
+        int n=ma[0].size();
+        int i=0,j=n-1;
+  //      cout<<m<<n;
+        while((i>=0 and i<=m-1) and ((j>=0 and j<=n-1)))
+              {
+                  if(ma[i][j]==t) return true;
+                  if(ma[i][j]>t) j--;
+                  else i++;
+              }
+        return false;
+        
+    }
