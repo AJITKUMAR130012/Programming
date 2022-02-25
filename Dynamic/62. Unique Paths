@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/unique-paths/
+
+int t[1001][1001];
+    int fun(int i,int j,int m,int n)
+    {
+        if(i==m and j==n) return 1;
+        if(t[i][j]!=-1) return t[i][j];
+        if(j==n) return t[i][j]= fun(i+1,j,m,n);
+        if(i==m) return t[i][j]=fun(i,j+1,m,n);
+        return t[i][j]=fun(i,j+1,m,n)+fun(i+1,j,m,n);
+        
+        
+    }
+    
+    int uniquePaths(int m, int n) {
+        memset(t,-1,sizeof(t));
+        int ans=0;
+        ans=fun(0,0,m-1,n-1);
+        return ans;
+        
+    }
