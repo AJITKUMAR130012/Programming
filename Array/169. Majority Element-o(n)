@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/majority-element/
+
+ int majorityElement(vector<int>& nums) {
+        int cn=0;
+        int ele=INT_MIN;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(cn==0) ele=nums[i];
+            if(ele==nums[i]) cn++;
+            else cn--;
+        }
+        return ele;
+    }
