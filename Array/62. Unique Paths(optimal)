@@ -1,0 +1,13 @@
+//https://leetcode.com/problems/unique-paths/
+
+ int uniquePaths(int p, int q) {
+      double ans=1;
+        int n=p+q-2;
+        int r=q-1;
+        for(int i=1;i<=r;i++)
+        {
+            ans=ans*(n-r+i)/i;
+        }
+        return int(ans);
+    }
+};
