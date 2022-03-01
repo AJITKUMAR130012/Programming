@@ -1,0 +1,54 @@
+//https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1#
+
+ bool BFS(int i,vector<int> adj[],vector<bool> &visited)
+    {
+    
+        queue<pair<int,int>> q;
+        q.push({i,-1});
+        // making first verices as visited
+        visited[i]=true;
+        //checking for every node
+        while(!q.empty())
+        {
+            
+            int x=q.front().first;
+            // y is parent 
+            int y=q.front().second;
+            q.pop();
+            for(auto t: adj[x])
+            {
+                // if not visited then push into queue and make is visited
+                if(visited[t]==false)
+                {
+                    visited[t]=true;
+                    q.push({t,x});
+                }
+           //     else if(visited[t] ==true and t!=y) return true;
+           // if is visited and it is not parent the cycle is present
+                else if(visited[t]==true and t!=y) return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ // Function to detect cycle in an undirected graph.   
+    bool isCycle(int V, vector<int> adj[]) {
+        // Code here
+        vector<bool> visited(V+1,false);
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                if(BFS(i,adj,visited)) return true;
+            }
+        }
+        return false;
+    }
