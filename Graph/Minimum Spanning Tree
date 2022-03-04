@@ -1,0 +1,51 @@
+//https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1#
+
+	int  min(vector<bool> &MST,vector<int> &key)
+	{
+	    int y=INT_MAX;
+	    int ans;
+	    for(int i=0;i<key.size();i++)
+	    {
+	        if( !(MST[i]) and y>key[i])
+	        {
+	            y=key[i];
+	            ans=i;
+	        }
+	    }
+	    return ans;
+	}
+	
+	
+	
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        // code here
+        vector<bool> MST(V,false);
+        vector<int> key(V,INT_MAX);
+        vector<int> parent(V,-1);
+        key[0]=0;
+     //   MST[0]=true;
+    //    int x=min(MST,key);
+     //   cout<<x<<" ";
+        for(int i=1;i<V;i++)
+        {
+            int x=min(MST,key);
+            MST[x]=true;
+            for(int j=0;j<adj[x].size();j++)
+            {
+                if(!MST[adj[x][j][0]] and key[adj[x][j][0]]>adj[x][j][1])
+                {
+                    key[adj[x][j][0]]=adj[x][j][1];
+                    parent[adj[x][j][0]]=x;
+                }
+            }
+        }
+        
+        long long sum=0;
+        for(int i=0;i<V;i++)
+        {
+            sum+=key[i];
+        }
+        return sum;
+    }
