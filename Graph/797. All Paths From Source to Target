@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/all-paths-from-source-to-target/
+
+ void dfs(int i,vector<vector<int>> &graph,int s,vector<int> v,vector<vector<int>> &ans,vector<bool> &visited)
+    {
+        if(i==s)
+        {
+            v.push_back(i);
+            ans.push_back(v);
+            return;
+        }
+        visited[i]=true;
+        v.push_back(i);
+        for(auto x: graph[i])
+        {
+            if(!visited[x])
+            {
+                dfs(x,graph,s,v,ans,visited);
+            }
+            
+        }
+        visited[i]=false;
+        v.pop_back();
+    }
+    
+    
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<int> v;
+        int n=graph.size();
+        vector<bool> visited(n,false);
+        vector<vector<int>> ans;
+            dfs(0,graph,n-1,v,ans,visited);
+        return ans;
+        
+    }
