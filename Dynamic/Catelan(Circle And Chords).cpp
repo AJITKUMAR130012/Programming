@@ -6,16 +6,16 @@ Space Complexity: o(n)
 #include<bits/stdc++.h>
 using namespace std;
 
-int catelan(int n)
+long long catelan(int n)
 {
-    vector<int> t(n+1,0);
+    vector<long long> t(n+1,0);
     t[0]=1;
     t[1]=1;
     for(int i=2;i<=n;i++)
     {
         for(int j=0;j<i;j++)
         {
-            int x=t[j]*t[i-j-1];
+            long long x=t[j]*t[i-j-1];
             t[i]+=x;
         }
     }
