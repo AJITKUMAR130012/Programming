@@ -1,0 +1,27 @@
+Time Complexity: o(n^2)
+Space Complexity: o(n)
+
+
+
+int longestSubsequence(int n, int arr[])
+    {
+        // code here
+      map<int,int> m;
+      vector<int> t(n+1);
+      int ans=0;
+      for(int i=0;i<n;i++)
+      {
+         int val=0;
+         for(int j=0;j<i;j++)
+         {
+             if(arr[i]-1==arr[j] or arr[i]+1==arr[j])
+             {
+                 val=max(t[j],val);
+             }
+         }
+         t[i]=1+val;
+         ans=max(ans,t[i]);
+      }
+      return ans;
+   
+    }
