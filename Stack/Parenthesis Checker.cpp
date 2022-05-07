@@ -25,5 +25,7 @@ Space Complexity: o(n)  --> size of stack
               //  cout<<"2"<<endl;
             }
         }
+        if(s.size()==0)
         return true;
+        return false;
     }
